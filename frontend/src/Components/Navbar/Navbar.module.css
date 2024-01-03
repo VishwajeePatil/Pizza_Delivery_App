@@ -1,0 +1,28 @@
+.main{
+    background-color: #ffffff;
+    padding: 7px 0;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.main > div{
+    justify-content: space-between;
+}
+
+.logo p{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+.logo p:hover {
+    color: #ff6600;
+}
+.link{
+    color: #322727;
+    font-weight: 500;
+    text-decoration: none;
+    margin-right: 25px;
+}
+.link:hover{
+    color: #132416;
+}
