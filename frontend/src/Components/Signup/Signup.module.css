@@ -1,0 +1,25 @@
+.main{
+    padding: 50px 0;
+    margin: auto;
+    background-color: #ffffff;
+}
+.main > div > div{
+    width: 650px;
+    margin: auto;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.header > div{
+    background-color: #f7f7f7;
+    padding: 10px 100px;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #869292;
+}
+.header > .headerActive{
+    background-color: #e3ebf7;
+    color: #285192;
+}
