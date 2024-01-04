@@ -18,6 +18,10 @@
 .logo p:hover {
     color: #FF6F00;
 }
+.links{
+    display: flex;
+    align-items: center;
+}
 .link{
     color: #ff8800;
     font-weight: 500;
@@ -38,6 +42,7 @@
     }
     .links{
         display: flex;
+        align-items: normal;
         flex-direction: column;
         padding: 10px 20px;
         background-color: #ffffff;

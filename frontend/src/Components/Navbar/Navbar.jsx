@@ -4,7 +4,7 @@ import style from "./Navbar.module.css"
 import { gsap } from "gsap";
 import {Link} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHamburger } from '@fortawesome/free-solid-svg-icons';
+import {  faBars  } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [active_menu,set_active_menu] = useState(false)
@@ -29,7 +29,7 @@ const Navbar = () => {
                 <Link className={style.link} to="/auth/signup">Signup | Login</Link>
             </div>
             <div className={style.menubtn}>
-              <FontAwesomeIcon icon={faHamburger} onClick={toggel_menu_btn}/>
+            <FontAwesomeIcon icon={faBars} onClick={toggel_menu_btn} rotation={active_menu ? 90 : 0} />
             </div>
         </div>
     </div>
