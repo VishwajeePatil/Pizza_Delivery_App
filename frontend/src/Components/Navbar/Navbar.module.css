@@ -2,6 +2,7 @@
     background-color: #ffffff;
     padding: 7px 0;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    position: sticky;
 }
 .main > div{
     justify-content: space-between;
@@ -10,19 +11,48 @@
 .logo p{
     font-size: 1.8rem;
     font-weight: bold;
-    color: #333;
+    color: #82926D;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
   }
 .logo p:hover {
-    color: #ff6600;
+    color: #FF6F00;
 }
 .link{
-    color: #322727;
+    color: #ff8800;
     font-weight: 500;
     text-decoration: none;
     margin-right: 25px;
 }
 .link:hover{
-    color: #132416;
+    color: #E26200;
+}
+.menubtn{
+    display: none;
+    font-size: 30px;
+    color: #FF6F00;
+}
+@media screen and (max-width:760px) {
+    .menubtn{
+        display: block;
+    }
+    .links{
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        border-radius: 0 0 0 20px;
+        right: 0;
+        top: 101%;
+        overflow: hidden;
+        transition: 0.3s ease-out;
+        position: absolute;
+        height: 0;
+    }
+    .link{
+        border-bottom: 1.5px solid grey;
+        margin-bottom: 10px;
+        padding: 5px 0;
+    }
 }
