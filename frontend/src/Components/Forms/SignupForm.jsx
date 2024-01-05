@@ -7,6 +7,8 @@ import styles from "./SignupForm.module.css"
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
 
 const SignupForm = () => {
+  const [otp,setOtp] = useState();
+  const [otpVerify,setOtpVerify] = useState(false);
   const [message,setMessage] = useState({msg:"",clr:true})
   const {setLoadingScreen} = useContext(LoadingScreenContext);
   const [typePass,settypePass] = useState(true)
@@ -23,7 +25,7 @@ const SignupForm = () => {
   })
   const handelchange = (e) => {
     const { name, value, type, checked } = e.target;
-
+    setMessage({msg:""});
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value,
@@ -36,7 +38,7 @@ const SignupForm = () => {
           setLoadingScreen(true);
           const res = await axios.post("http://localhost:8000/otp",{email:formData.email});
           setLoadingScreen(false);
-          console.log(res)
+          setOtp(res.data.otp);
           if(res.status == 200){
             setMessage({msg:res.data.msg,clr:true})
           }
@@ -48,16 +50,31 @@ const SignupForm = () => {
         }
   }
 
+  const checkOtp = (event)=>{
+    event.preventDefault();
+    if(otp===formData.otp){
+      setOtpVerify(true);
+      setMessage({msg:"OTP Verify SuccessFully",clr:true})
+    }
+    else{
+      setMessage({msg:"OTP Doesn't Match",clr:false})
+    }
+  }
 
 
 
   const handelsubmit = (event)=>{
-    setLoadingScreen(true);
     event.preventDefault();
-    console.log(formData)
-    setTimeout(() => {
-      setLoadingScreen(false);
-    }, 1000);
+    if(formData.name == "" || formData.email == "" || formData.mobileNo=="" || formData.password=="" ){
+      setMessage({msg:"Fill All The Fields ",clr:false});
+    }
+    else if(!otpVerify){
+      setMessage({msg:"OTP Verification Pending",clr:false});
+    }
+    else{
+      console.log(formData)
+    }
+
   }
   return(
     <>
@@ -85,7 +102,7 @@ const SignupForm = () => {
         <label>Enter OTP</label>
         <div>
         <input type="text" placeholder='_ _ _   _ _ _' name="otp" onChange={handelchange} value={formData.otp}/>
-        <button>Verify OTP</button>
+        <button onClick={checkOtp}>Verify OTP</button>
         </div>
       </div>
 
