@@ -47,6 +47,8 @@ const SignupForm = () => {
           }
         } catch (error) {
           console.log(error)
+          setLoadingScreen(false);
+          setMessage({msg:error.response.data.msg,clr:false})
         }
   }
 
@@ -63,7 +65,7 @@ const SignupForm = () => {
 
 
 
-  const handelsubmit = (event)=>{
+  const handelsubmit = async (event)=>{
     event.preventDefault();
     if(formData.name == "" || formData.email == "" || formData.mobileNo=="" || formData.password=="" ){
       setMessage({msg:"Fill All The Fields ",clr:false});
@@ -73,13 +75,42 @@ const SignupForm = () => {
     }
     else{
       console.log(formData)
+      try {
+        setLoadingScreen(true);
+        const res = await axios.post("http://localhost:8000/auth/signup",{formData})
+        setLoadingScreen(false);
+        console.log("signup",res)
+        setMessage({msg:res.data.msg,clr:true});
+      } catch (error) {
+        setLoadingScreen(false);
+        setMessage({msg:error.response.data.msg,clr:false});
+      }
     }
-
   }
+  // const submit = async (event) =>{
+  //   event.preventDefault();
+  //   try {
+  //     setLoadingScreen(true);
+  //     const res = await axios.post("http://localhost:8000/auth/signup",{
+  //       name: "Vishwajeet Patil",
+  //       mobileNo: "7620705446",
+  //       email: "okok",
+  //       otp:"true",
+  //       password: "Vishu@45",
+  //       getOffer: true
+  //     })
+  //     setLoadingScreen(false);
+  //     console.log(res.response);
+  //   } catch (error) {
+  //     setLoadingScreen(false);
+  //     setMessage({msg:error.response.data,clr:false});
+  //   }
+  // }
   return(
     <>
     <div className={styles.formcontainer}>
       <form >
+        {/* <button onClick={submit}>demo</button> */}
       <div className={styles.name}>
         <label>Full Name</label>
         <input type="text" placeholder='Enter Full Name' onChange={handelchange} name="name" value={formData.name}/>
