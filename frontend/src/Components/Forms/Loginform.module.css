@@ -31,17 +31,7 @@ button:hover{
     background-color: rgb(90, 178, 255);
     color: #fff;
 }
-.email input{
-    width: 75%;
-}
-.email button{
-    width: 22%;
-}
-.email > div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 .password{
     position: relative;
 }
@@ -60,24 +50,4 @@ input[type="submit"]{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 3px;
     cursor: pointer;
     font-size: 0.8rem;
-}
-.getoffer{
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    position: relative;
-}
-.getoffer label{
-    flex: 3;
-    /* color: grey; */
-}
-.getoffer input{
-    flex: 1;
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(-50%,-50%);
-    cursor: pointer;
 }
