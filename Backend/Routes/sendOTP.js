@@ -3,9 +3,13 @@ const otpGenerator = require("otp-generator")
 const nodemailer = require("nodemailer")
 
 const otpRouter = express.Router();
+const app = express();
+
 
 otpRouter.post("/",(req,res)=>{
-
+    try {
+      const {email} = req.body;
+    console.log(email)
     const transporter = nodemailer.createTransport({
         service:"gmail",
         auth:{
@@ -21,9 +25,9 @@ otpRouter.post("/",(req,res)=>{
     })
     const mailOptions = {
         from :"sliceharber@gmail.com",
-        to:"Vishupatil5446@gmail.com",
+        to:email,
         subject:"🍕 Welcome to SliceHarber! Your Pizza Adventure Begins 🚀",
-        text:`Hi [User],
+        text:`Hi New Member 👋🏻,
 
         Congratulations on choosing SliceHarber – where pizza dreams come true! 🎉 To complete your signup and unlock a world of cheesy delights, here's your One-Time Password (OTP):
         
@@ -38,12 +42,16 @@ otpRouter.post("/",(req,res)=>{
     };
 
     transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.error(err);
-          res.status(500).send({ error: "Error While Sending Mail" });
-        } else {
-          res.status(200).send({ msg: "Mail Sent Successfully", otp: otp });
-        }
-      });      
+          if (err) {
+            console.error(err);
+            res.status(500).send({ msg: "Error While Sending Mail" });
+          } else {
+            console.log("Mail Sended")
+            res.status(200).send({ msg: "OTP Sent Successfully", otp: otp ,info:info});
+          }
+      });     
+    } catch (error) {
+      res.status(500).send({msg:"Something Went Wrong On Server Side"})
+    } 
 })
 module.exports = otpRouter;

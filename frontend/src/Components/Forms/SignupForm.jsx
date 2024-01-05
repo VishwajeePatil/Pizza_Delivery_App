@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
-
+import axios from "axios"
 // Local Imports
 import styles from "./SignupForm.module.css"
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
 
 const SignupForm = () => {
-  const {loadingScreen , setLoadingScreen} = useContext(LoadingScreenContext);
+  const [message,setMessage] = useState({msg:"",clr:true})
+  const {setLoadingScreen} = useContext(LoadingScreenContext);
   const [typePass,settypePass] = useState(true)
   const changepasstype = ()=>{
     settypePass(!typePass)
@@ -18,7 +19,7 @@ const SignupForm = () => {
     email: "",
     otp:"",
     password: "",
-    getOffer: false
+    getOffer: true
   })
   const handelchange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -28,6 +29,28 @@ const SignupForm = () => {
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+
+  const sendOtp = async (event)=>{
+        event.preventDefault();
+        try {
+          setLoadingScreen(true);
+          const res = await axios.post("http://localhost:8000/otp",{email:formData.email});
+          setLoadingScreen(false);
+          console.log(res)
+          if(res.status == 200){
+            setMessage({msg:res.data.msg,clr:true})
+          }
+          else{
+            setMessage({msg:res.data.msg,clr:false})
+          }
+        } catch (error) {
+          console.log(error)
+        }
+  }
+
+
+
+
   const handelsubmit = (event)=>{
     setLoadingScreen(true);
     event.preventDefault();
@@ -39,7 +62,7 @@ const SignupForm = () => {
   return(
     <>
     <div className={styles.formcontainer}>
-      <form onSubmit={handelsubmit}>
+      <form >
       <div className={styles.name}>
         <label>Full Name</label>
         <input type="text" placeholder='Enter Full Name' onChange={handelchange} name="name" value={formData.name}/>
@@ -54,7 +77,7 @@ const SignupForm = () => {
         <label>Email</label>
         <div>
         <input type="email" placeholder='Enter Email Address' name="email" onChange={handelchange} value={formData.email}/>
-        <button>Send OTP</button>
+        <button onClick={sendOtp}>Send OTP</button>
         </div>
       </div>
 
@@ -74,12 +97,14 @@ const SignupForm = () => {
 
       <div className={styles.getoffer}>
         <label>Get Updates Of Exiting Offer</label>
-        <input type="checkbox" onChange={handelchange} value={formData.getOffer} name='getOffer'/>
+        <input type="checkbox" checked={formData.getOffer} onChange={handelchange} value={formData.getOffer} name='getOffer'/>
         <div className={styles.circleMark}></div>
       </div>
-
       <div>
-        <input type="submit" />
+        <p style={{color: message.clr ? "green" : "red"}}>{message.msg}</p>
+      </div>
+      <div>
+        <input type="submit" onClick={handelsubmit} />
       </div>
       </form>
     </div>

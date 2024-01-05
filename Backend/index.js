@@ -1,11 +1,12 @@
 const express = require("express");
-
+const cors = require("cors")
 const {connection} = require("./db")
 const {UserModel} = require("./Model/UserModel")
 const authRouter = require("./Routes/Auth");
 const otpRouter = require("./Routes/sendOTP");
 const app = express();
 
+app.use(cors({origin:"*"}))
 app.use(express.json());
 app.use(express.text());
 
