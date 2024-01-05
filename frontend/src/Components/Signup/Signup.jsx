@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from "./Signup.module.css"
 import Loginform from '../Forms/Loginform'
 import SignupForm from '../Forms/SignupForm'
+import LoadingScreen from '../LoadingScreen'
 const Signup = () => {
   const [form,setform] = useState(false)
   const formChangeSignup = ()=>{
@@ -11,6 +12,7 @@ const Signup = () => {
     setform(true);
   }
   return (
+    <>
     <div className={style.main}>
       <div className="container">
         <div className={style.header}>
@@ -24,6 +26,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
