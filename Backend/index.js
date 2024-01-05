@@ -2,12 +2,15 @@ const express = require("express");
 
 const {connection} = require("./db")
 const {UserModel} = require("./Model/UserModel")
-const authRouter = require("./Routes/Auth")
+const authRouter = require("./Routes/Auth");
+const otpRouter = require("./Routes/sendOTP");
 const app = express();
 
 app.use(express.json());
 app.use(express.text());
-app.use("/auth",authRouter)
+
+app.use("/auth",authRouter);
+app.use("/otp",otpRouter);
 
 app.get("/",(req,res)=>{
     res.send("This Is Home Route");

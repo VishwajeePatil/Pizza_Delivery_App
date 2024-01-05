@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
-import styles from "./SignupForm.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+
+// Local Imports
+import styles from "./SignupForm.module.css"
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
 
 const SignupForm = () => {

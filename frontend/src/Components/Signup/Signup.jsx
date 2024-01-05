@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import style from "./Signup.module.css"
 import Loginform from '../Forms/Loginform'
 import SignupForm from '../Forms/SignupForm'
-import LoadingScreen from '../LoadingScreen'
 const Signup = () => {
   const [form,setform] = useState(false)
   const formChangeSignup = ()=>{
