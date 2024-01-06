@@ -1,17 +1,16 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const saltRounds = 3;
+const jwt = require("jsonwebtoken")
 
 const { UserModel } = require("../Model/UserModel");
+
 const authRouter = express.Router();
 
 authRouter.post("/signup", async (req, res) => {
-  console.log(req.body) 
   const { name, email, mobileNo, password, getOffer } = req.body.formData;
   const user = await UserModel.findOne({ email });
-  console.log(user);
   if(!user) {
-    const hash = await bcrypt.hash(password, saltRounds);
+    const hash = await bcrypt.hash(password, process.env.saltRound);
     try {
           const new_user = new UserModel({
             name: name,
@@ -31,4 +30,24 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
+authRouter.post("/login",async(req,res)=>{
+  const {email,password} = req.body;
+  const user = await UserModel.findOne({email});
+  if(!user){
+    res.status(404).send({msg:"User Not Found ! Signup First "});
+  }
+  else{
+    const hash = user.password;
+    bcrypt.compare(password,hash,(err,result)=>{
+      if(result){
+          const token = jwt.sign({user},process.env.secretKey);
+          res.status(200).send({ msg: "Login Successful", token: token });
+      }
+      else{
+        res.status(401).send({msg:"Invalid Credentials"});
+      }
+    })
+
+  }
+})
 module.exports = authRouter;
