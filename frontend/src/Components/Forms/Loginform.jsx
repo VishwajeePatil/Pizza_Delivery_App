@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import {useNavigate} from "react-router-dom"
 import styles from "./Loginform.module.css"
 import axios from "axios"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,6 +21,7 @@ const Loginform = () => {
       [name]:value
     })
   }
+  const navigate = useNavigate();
   const handelSubmit = async (event)=>{
     event.preventDefault();
     try {
@@ -27,6 +29,7 @@ const Loginform = () => {
       const res = await axios.post("http://localhost:8000/auth/login",formData)
       setLoadingScreen(false)
       setMessage({msg:res.data.msg,clr:true})
+      navigate("/");
     } catch (error) {
       setLoadingScreen(false)
       setMessage({msg:error.response.data.msg,clr:false})

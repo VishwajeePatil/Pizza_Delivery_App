@@ -7,6 +7,7 @@ import styles from "./SignupForm.module.css"
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
 
 const SignupForm = () => {
+  const [emailDesable,setEmailDisable] = useState(false);
   const [otp,setOtp] = useState();
   const [otpVerify,setOtpVerify] = useState(false);
   const [message,setMessage] = useState({msg:"",clr:true})
@@ -34,21 +35,20 @@ const SignupForm = () => {
 
   const sendOtp = async (event)=>{
         event.preventDefault();
+        setLoadingScreen(true);
         try {
-          setLoadingScreen(true);
           const res = await axios.post("http://localhost:8000/otp",{email:formData.email});
           setLoadingScreen(false);
-          setOtp(res.data.otp);
           if(res.status == 200){
+            setOtp(res.data.otp);
             setMessage({msg:res.data.msg,clr:true})
           }
           else{
             setMessage({msg:res.data.msg,clr:false})
           }
         } catch (error) {
-          console.log(error)
           setLoadingScreen(false);
-          setMessage({msg:error.response.data.msg,clr:false})
+          setMessage({msg:error.message,clr:false})
         }
   }
 
@@ -57,6 +57,7 @@ const SignupForm = () => {
     if(otp===formData.otp){
       setOtpVerify(true);
       setMessage({msg:"OTP Verify SuccessFully",clr:true})
+      setEmailDisable(true);
     }
     else{
       setMessage({msg:"OTP Doesn't Match",clr:false})
@@ -124,7 +125,7 @@ const SignupForm = () => {
       <div className={styles.email}>
         <label>Email</label>
         <div>
-        <input type="email" placeholder='Enter Email Address' name="email" onChange={handelchange} value={formData.email}/>
+        <input type="email" placeholder='Enter Email Address' name="email" onChange={handelchange} value={formData.email} disabled={emailDesable}/>
         <button onClick={sendOtp}>Send OTP</button>
         </div>
       </div>

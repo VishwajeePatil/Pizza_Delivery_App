@@ -9,7 +9,6 @@ const app = express();
 otpRouter.post("/",(req,res)=>{
     try {
       const {email} = req.body;
-    console.log(email)
     const transporter = nodemailer.createTransport({
         service:"gmail",
         auth:{
@@ -46,7 +45,6 @@ otpRouter.post("/",(req,res)=>{
             console.error(err);
             res.status(500).send({ msg: "Error While Sending Mail" });
           } else {
-            console.log("Mail Sended")
             res.status(200).send({ msg: "OTP Sent Successfully", otp: otp ,info:info});
           }
       });     
