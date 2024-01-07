@@ -3,7 +3,7 @@ import style from "./Signup.module.css"
 import Loginform from '../Forms/Loginform'
 import SignupForm from '../Forms/SignupForm'
 const Signup = () => {
-  const [form,setform] = useState(false)
+  const [form,setform] = useState(true)
   const formChangeSignup = ()=>{
     setform(false);
   }

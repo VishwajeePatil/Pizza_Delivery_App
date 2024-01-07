@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import {useNavigate} from "react-router-dom"
-import styles from "./Loginform.module.css"
+import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
+import styles from "./Loginform.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
@@ -29,7 +29,8 @@ const Loginform = () => {
       const res = await axios.post("http://localhost:8000/auth/login",formData)
       setLoadingScreen(false)
       setMessage({msg:res.data.msg,clr:true})
-      navigate("/");
+      const role = res.data.role;
+      navigate(role === "user" ? "/" : "/dashboard");
     } catch (error) {
       setLoadingScreen(false)
       setMessage({msg:error.response.data.msg,clr:false})
@@ -56,6 +57,9 @@ const Loginform = () => {
       </div>
       <div>
         <input type="submit" onClick={handelSubmit}/>
+      </div>
+      <div className={styles.forgetpass}>
+        <Link to={"/auth/forgetpass"}>Forgot Password</Link>
       </div>
       </form>
     </div>

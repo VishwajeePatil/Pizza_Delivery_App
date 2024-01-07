@@ -5,6 +5,9 @@ import Navbar from './Components/Navbar/Navbar';
 import LoadingScreen from './Components/LoadingScreen';
 import { useContext } from 'react';
 import LoadingScreenContext from './Contetx API\'s/LoadingScreen/LoadingScreen';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Loginform from './Components/Forms/Loginform';
+import ForgetPasswords from './Components/Forms/ForgetPasswords';
 function App() {
   const {loadingScreen , setLoadingScreen} = useContext(LoadingScreenContext);
   // setLoadingScreen(true)
@@ -15,6 +18,8 @@ function App() {
       <Navbar/>
      <Routes>
       <Route path='/auth/signup' element={<Signup/>}/>
+      <Route path='/dashboard' element={<Dashboard/>}/>
+      <Route path='auth/forgetpass' element={<ForgetPasswords/>}/>
      </Routes> 
     </div>
     </>

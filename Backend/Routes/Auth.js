@@ -5,12 +5,12 @@ const jwt = require("jsonwebtoken")
 const { UserModel } = require("../Model/UserModel");
 
 const authRouter = express.Router();
-
+// console.log(process.env.saltRound)
 authRouter.post("/signup", async (req, res) => {
   const { name, email, mobileNo, password, getOffer } = req.body.formData;
   const user = await UserModel.findOne({ email });
   if(!user) {
-    const hash = await bcrypt.hash(password, process.env.saltRound);
+    const hash = await bcrypt.hash(password, 3);
     try {
           const new_user = new UserModel({
             name: name,
@@ -30,6 +30,17 @@ authRouter.post("/signup", async (req, res) => {
   }
 });
 
+authRouter.put("/forgetpass", async (req, res) => {
+  const { email, password} = req.body.formData;
+  const hash = await bcrypt.hash(password, 3);
+  const user = await UserModel.findOneAndUpdate({ email },{$set:{password:hash}});
+  if(user) {
+    res.status(200).send({msg:"Password Chnaged Successfully"})
+  } else {
+    res.status(404).send({msg:"User Not Found..."});
+  }
+});
+
 authRouter.post("/login",async(req,res)=>{
   const {email,password} = req.body;
   const user = await UserModel.findOne({email});
@@ -41,7 +52,7 @@ authRouter.post("/login",async(req,res)=>{
     bcrypt.compare(password,hash,(err,result)=>{
       if(result){
           const token = jwt.sign({user},process.env.secretKey);
-          res.status(200).send({ msg: "Login Successful", token: token });
+          res.status(200).send({ msg: "Login Successful", token: token ,role:user.role});
       }
       else{
         res.status(401).send({msg:"Invalid Credentials"});

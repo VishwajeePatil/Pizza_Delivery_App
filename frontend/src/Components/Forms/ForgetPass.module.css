@@ -31,7 +31,17 @@ button:hover{
     background-color: rgb(90, 178, 255);
     color: #fff;
 }
-
+.email input{
+    width: 75%;
+}
+.email button{
+    width: 22%;
+}
+.email > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .password{
     position: relative;
 }
@@ -50,13 +60,4 @@ input[type="submit"]{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 3px;
     cursor: pointer;
     font-size: 0.8rem;
-}
-.forgetpass{
-    width: fit-content;
-    margin-left: auto;
-    margin-top: 10px;
-}
-.forgetpass *{
-    text-decoration: none;
-
 }
