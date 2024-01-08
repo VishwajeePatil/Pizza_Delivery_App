@@ -4,6 +4,7 @@ const {connection} = require("./db")
 const {UserModel} = require("./Model/UserModel")
 const authRouter = require("./Routes/Auth");
 const otpRouter = require("./Routes/sendOTP");
+const adminRouter = require("./Routes/Admin");
 const app = express();
 
 app.use(cors({origin:"*"}))
@@ -12,6 +13,7 @@ app.use(express.text());
 
 app.use("/auth",authRouter);
 app.use("/otp",otpRouter);
+app.use("/dashboard",adminRouter);
 
 app.get("/",(req,res)=>{
     res.send("This Is Home Route");

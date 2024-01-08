@@ -21,6 +21,10 @@ const Loginform = () => {
       [name]:value
     })
   }
+  const passType = ()=>{
+    settypePass(!typePass);
+  }
+
   const navigate = useNavigate();
   const handelSubmit = async (event)=>{
     event.preventDefault();
@@ -49,7 +53,7 @@ const Loginform = () => {
       <div className={styles.password}>
         <label> Password </label>
         <input type={typePass ? "password" : "text"} placeholder='* * * * * * * * ' name="password" onChange={handelChange}/>
-        <FontAwesomeIcon icon={typePass ? faEyeSlash : faEye } className={styles.eyeIcon} />
+        <FontAwesomeIcon icon={typePass ? faEyeSlash : faEye } className={styles.eyeIcon} onClick={passType}/>
       </div>
 
       <div>

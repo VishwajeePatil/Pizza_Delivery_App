@@ -4,8 +4,17 @@
   box-sizing: border-box;
   font-family: "Poppins";
 }
+:root {
+  --focus-color:#BF3131;
+  --main-color:#ffffff;
+  --primary-color: #88AB8E;
+  --secondary-color: #AFC8AD;
+  --tertiary-color:#EEE7DA;
+  --quaternary:#F2F1EB;
+
+}
 body{
-  background-color:#ffffff;
+  background-color:var(--quaternary);
 }
 html{
   font-size: 20px

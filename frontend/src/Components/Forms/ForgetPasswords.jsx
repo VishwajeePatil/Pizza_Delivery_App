@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import {Link} from "react-router-dom"
 import axios from "axios"
 
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
@@ -114,6 +115,9 @@ const checkOtp = (event)=>{
       </div>
       <div>
         <input type="submit" onClick={handelsubmit} />
+      </div>
+      <div className={styles.link}>
+        <Link to={"/signup"}> Back To Login</Link>
       </div>
     </form>
     </div>

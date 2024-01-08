@@ -5,11 +5,12 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 20px ;
     border-radius: 5px;
+    background-color: var(--main-color);
 }
-label{
+.formcontainer label{
     display: block;
     margin: 10px 0 5px 0;
-    color: #285192;
+    color: var(--primary-color);
 }
 input{
     width: 100%;
@@ -17,18 +18,21 @@ input{
     outline: none;
     font-size: 1rem;
     padding-left: 10px;
+    border: 1px solid #BF3131;
+    border-radius: 7px;
 }
-button{
+.formcontainer button,.formcontainer input[type="submit"]{
     height: 40px;
-    background-color: rgb(0, 136, 255);
-    border: none;
+    background-color: var(--tertiary-color);
+    border: 1px solid #BF3131;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 3px;
     cursor: pointer;
     font-size: 0.8rem;
+    box-shadow: none;
+    color: var(--primary-color);
 }
-button:hover{
-    background-color: rgb(90, 178, 255);
+.formcontainer button:hover,.formcontainer input[type="submit"]:hover{
+    background-color: var(--secondary-color);
     color: #fff;
 }
 .email input{
@@ -51,15 +55,6 @@ button:hover{
     right: 1%;
     transform: translate(-50%,-50%);
     cursor: pointer;
-}
-input[type="submit"]{
-    margin-top: 25px;
-    background-color: rgb(0, 136, 255);
-    border: none;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 3px;
-    cursor: pointer;
-    font-size: 0.8rem;
 }
 .getoffer{
     display: flex;
