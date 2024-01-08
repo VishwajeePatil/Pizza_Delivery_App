@@ -4,16 +4,16 @@ import tokenContext from '../../Contetx API\'s/token/TokenContext';
 
 
 const Dashboard = () => {
-  const {token,setToken} = useContext(tokenContext);
+  const {getToken,setToken} = useContext(tokenContext);
   const [msg,setmsg] = useState("");
   const getData = async()=>{
     try {
       const res = await axios.get("http://localhost:8000/dashboard/",{
         headers:{
-          Authorization : `Bearer ${token}`
+          Authorization : `Bearer ${getToken()}`
         }
       });
-      setmsg("You Are Authorised");
+      setmsg(res.data.user.name);
       console.log(res);
     } catch (error) {
       console.log(error)
@@ -25,7 +25,9 @@ const Dashboard = () => {
   },[])
   return (
     <div>
-      <h1>{msg}</h1>
+      <div className="container">
+        <h2>{`Hello ${msg}`}</h2>
+      </div>
     </div>
   )
 }

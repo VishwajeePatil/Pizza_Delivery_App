@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import tokenContext from './TokenContext'
 const TokenContextProvider = ({children}) => {
-    const [token,setToken] = useState("Hello");
+    const setToken = (token)=>{
+      localStorage.setItem("token",token)
+    }
+    const getToken = ()=>{
+      return localStorage.getItem("token");
+    }
   return (
     <div>
-      <tokenContext.Provider value = {{token,setToken}}>
+      <tokenContext.Provider value = {{setToken,getToken}}>
         {children}
       </tokenContext.Provider>
     </div>

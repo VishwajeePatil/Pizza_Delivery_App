@@ -6,15 +6,16 @@ const authentication = (req,res,next)=>{
     if(token){
         jwt.verify(token,process.env.secretKey,(err,decoded)=>{
             if(err){
-                res.status(401).send("token invalid");
+                res.status(401).send("Login Firsts");
             }
             else{
+                req.user=decoded;
                 next();
             }
         });
     }
     else{
-        res.status(401).send("token not Found");
+        res.status(401).send("Login First");
     }
 }
 module.exports = authentication;

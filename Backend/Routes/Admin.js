@@ -7,6 +7,6 @@ adminRouter.get("/varient", (req,res)=>{
     res.send("This Is Vaients");
 })
 adminRouter.get("/",(req,res)=>{
-    res.send("This Is Dashboard");
+    res.send(req.user);
 })
 module.exports = adminRouter;

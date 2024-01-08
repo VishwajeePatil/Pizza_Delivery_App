@@ -8,7 +8,7 @@ import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
 import tokenContext from '../../Contetx API\'s/token/TokenContext';
 
 const Loginform = () => {
-  const {token,setToken} = useContext(tokenContext);
+  const {setToken} = useContext(tokenContext);
   const [typePass,settypePass] = useState(true)
   const [message,setMessage] = useState({msg:"",clr:true})
   const {setLoadingScreen} = useContext(LoadingScreenContext);
@@ -33,14 +33,15 @@ const Loginform = () => {
     try {
       setLoadingScreen(true)
       const res = await axios.post("http://localhost:8000/auth/login",formData)
+      setToken(res.data.token);
       setLoadingScreen(false)
       setMessage({msg:res.data.msg,clr:true})
       const role = res.data.role;
-      setToken(res.data.token);
       navigate(role === "user" ? "/" : "/dashboard");
     } catch (error) {
       setLoadingScreen(false)
-      setMessage({msg:error.response.data.msg,clr:false})
+      // setMessage({msg:error.response.data.,clr:false})
+      console.log(error)
     }
   }
   return (
