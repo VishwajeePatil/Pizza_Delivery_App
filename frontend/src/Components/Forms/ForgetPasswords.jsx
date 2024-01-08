@@ -4,8 +4,8 @@ import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom"
 import axios from "axios"
 
-import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
 import styles from "./ForgetPass.module.css"
+import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
 
 
 const ForgetPasswords = () => {
@@ -117,7 +117,7 @@ const checkOtp = (event)=>{
         <input type="submit" onClick={handelsubmit} />
       </div>
       <div className={styles.link}>
-        <Link to={"/signup"}> Back To Login</Link>
+        <Link to={"/auth/signup"}> Back To Login</Link>
       </div>
     </form>
     </div>

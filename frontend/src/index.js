@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom"
-import LoadingScreenProvider from './Contetx API\'s/LoadingScreen/LoadingScreenProvider';
+import App from './App';
+import LoadingScreenProvider from "./Contetx API's/LoadingScreenProvider"
+import TokenContextProvider from './Contetx API\'s/token/TokenContextProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <TokenContextProvider>
   <LoadingScreenProvider>
     <App />
   </LoadingScreenProvider>
+  </TokenContextProvider>
   </BrowserRouter>
 );
 

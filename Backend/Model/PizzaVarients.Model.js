@@ -17,6 +17,9 @@ const pizzaVarientSchema = new mongoose.Schema({
     },
     veggies:{
         type:String,
+    },
+    price:{
+        type:Number,
     }
 })
 const PizzaVarientModel = mongoose.model("pizza_varients",pizzaVarientSchema);

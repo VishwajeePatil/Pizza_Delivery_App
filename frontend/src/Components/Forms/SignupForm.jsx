@@ -4,7 +4,7 @@ import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import axios from "axios"
 // Local Imports
 import styles from "./SignupForm.module.css"
-import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
+import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
 
 const SignupForm = () => {
   const [emailDesable,setEmailDisable] = useState(false);

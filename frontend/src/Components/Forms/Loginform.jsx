@@ -4,9 +4,11 @@ import axios from "axios"
 import styles from "./Loginform.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
-import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen/LoadingScreen';
+import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
+import tokenContext from '../../Contetx API\'s/token/TokenContext';
 
 const Loginform = () => {
+  const {token,setToken} = useContext(tokenContext);
   const [typePass,settypePass] = useState(true)
   const [message,setMessage] = useState({msg:"",clr:true})
   const {setLoadingScreen} = useContext(LoadingScreenContext);
@@ -34,6 +36,7 @@ const Loginform = () => {
       setLoadingScreen(false)
       setMessage({msg:res.data.msg,clr:true})
       const role = res.data.role;
+      setToken(res.data.token);
       navigate(role === "user" ? "/" : "/dashboard");
     } catch (error) {
       setLoadingScreen(false)

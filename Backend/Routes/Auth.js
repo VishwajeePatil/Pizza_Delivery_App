@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 const { UserModel } = require("../Model/UserModel");
 
 const authRouter = express.Router();
-// console.log(process.env.saltRound)
+
 authRouter.post("/signup", async (req, res) => {
   const { name, email, mobileNo, password, getOffer } = req.body.formData;
   const user = await UserModel.findOne({ email });
@@ -52,7 +52,7 @@ authRouter.post("/login",async(req,res)=>{
     bcrypt.compare(password,hash,(err,result)=>{
       if(result){
           const token = jwt.sign({user},process.env.secretKey);
-          res.status(200).send({ msg: "Login Successful", token: token ,role:user.role});
+          res.status(200).send({ msg: "Login Successful",token:token,role:user.role});
       }
       else{
         res.status(401).send({msg:"Invalid Credentials"});
