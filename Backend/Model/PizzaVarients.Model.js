@@ -3,6 +3,9 @@ const pizzaVarientSchema = new mongoose.Schema({
     size:{
         type:Number,
     },
+    img_url:{
+        type:String,
+    },
     base:{
         type:String,
     },

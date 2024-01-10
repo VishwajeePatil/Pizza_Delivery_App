@@ -40,7 +40,7 @@ const Loginform = () => {
       navigate(role === "user" ? "/" : "/dashboard");
     } catch (error) {
       setLoadingScreen(false)
-      // setMessage({msg:error.response.data.,clr:false})
+      setMessage({msg:"Invalid Crediantials",clr:false})
       console.log(error)
     }
   }
