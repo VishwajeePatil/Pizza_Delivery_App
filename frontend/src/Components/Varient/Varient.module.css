@@ -1,0 +1,30 @@
+.main{
+    background-color: var(--main-color);
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    /* overflow: hidden; */
+}
+.main > div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main .title p:first-child{
+    color: black;
+    font-size: 1rem;
+}
+.title > p:nth-child(2){
+    color: var(--focus-color);
+    font-size: 1rem;
+}
+.main p{
+    color: gray;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+.trashIcon{
+    font-size: 1.2rem;
+    color: var(--focus-color);
+    cursor: pointer;
+}
