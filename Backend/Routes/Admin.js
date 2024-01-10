@@ -36,4 +36,14 @@ adminRouter.post("/addvarient", async (req,res)=>{
 adminRouter.get("/",(req,res)=>{
     res.send(req.user);
 })
+adminRouter.delete("/deletevarient/:id",async(req,res)=>{
+    console.log(req.params.id);
+    try {
+        await PizzaVarientModel.findOneAndDelete({_id:req.params.id});
+        res.send("Varient Deleted Successfully");
+    } catch (error) {
+        console.log(error)
+        res.send(error);
+    }
+})
 module.exports = adminRouter;

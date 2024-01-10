@@ -7,6 +7,7 @@ import styles from "./Dashboard.module.css"
 
 const Dashboard = () => {
   const {getToken,setToken} = useContext(tokenContext);
+  const [remove,setRremove] = useState(false);
   const [varients,setVarients] = useState([]);
   const [msg,setmsg] = useState("");
   const getData = async()=>{
@@ -24,9 +25,8 @@ const Dashboard = () => {
   }
   useEffect(()=>{
     getData();
-  },[])
+  },[remove])
   const deleteVarient = async(id)=>{
-    console.log(id)
     try {
       const res = await axios.delete(`http://localhost:8000/dashboard/deletevarient/${id}`,{
         headers:{
@@ -34,6 +34,8 @@ const Dashboard = () => {
         }
       })
       console.log(res);
+      setRremove(!remove);
+
     } catch (error) {
       console.log(error)
     }
