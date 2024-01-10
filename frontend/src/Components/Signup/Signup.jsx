@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import style from "./Signup.module.css"
-import Loginform from '../Forms/Loginform'
-import SignupForm from '../Forms/SignupForm'
+import Loginform from '../Forms/Login/Loginform'
+import SignupForm from '../Forms/Signup/SignupForm'
+
 const Signup = () => {
   const [form,setform] = useState(true)
   const formChangeSignup = ()=>{

@@ -1,0 +1,38 @@
+.main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--main-color);
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--focus-color);
+    width: 500px;
+    z-index: 99;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.cancelIcon{
+    width: fit-content;
+    margin-left: auto;
+    background-color: rgb(202, 0, 0);
+    padding: 0 15px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+input,select{
+    height: 30px;
+    border: 1px solid var(--focus-color);
+    border-radius: 5px;
+}
+form > div{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+form > div *:first-child{
+    flex: 1;
+}
+form > div *:nth-child(2){
+    flex: 3;
+}

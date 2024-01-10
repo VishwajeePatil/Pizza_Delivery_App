@@ -4,8 +4,10 @@ import axios from "axios"
 import styles from "./Loginform.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faEye  , faEyeSlash} from '@fortawesome/free-solid-svg-icons';
-import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
-import tokenContext from '../../Contetx API\'s/token/TokenContext';
+import tokenContext from '../../../Contetx API\'s/token/TokenContext';
+import LoadingScreenContext from '../../../Contetx API\'s/LoadingScreen';
+
+
 
 const Loginform = () => {
   const {setToken} = useContext(tokenContext);

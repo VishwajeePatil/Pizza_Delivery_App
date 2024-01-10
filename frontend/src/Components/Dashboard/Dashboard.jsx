@@ -4,23 +4,29 @@ import axios from "axios"
 import tokenContext from '../../Contetx API\'s/token/TokenContext';
 import Varient from '../Varient/Varient';
 import styles from "./Dashboard.module.css"
-
+import AddVarientFrom from '../Forms/Varient/AddVarientFrom';
+import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
 const Dashboard = () => {
-  const {getToken,setToken} = useContext(tokenContext);
+  const {setLoadingScreen} = useContext(LoadingScreenContext);
+  const [addVarient,setAddVarient] = useState(false);
+  const {getToken} = useContext(tokenContext);
   const [remove,setRremove] = useState(false);
   const [varients,setVarients] = useState([]);
   const [msg,setmsg] = useState("");
   const getData = async()=>{
     try {
+      setLoadingScreen(true);
       const res = await axios.get("http://localhost:8000/dashboard/varient",{
         headers:{
           Authorization : `Bearer ${getToken()}`
         }
       });
       setVarients(res.data)
+      setLoadingScreen(false);
     } catch (error) {
       console.log(error)
       setmsg(error.response.data);
+      setLoadingScreen(false);
     }
   }
   useEffect(()=>{
@@ -28,30 +34,50 @@ const Dashboard = () => {
   },[remove])
   const deleteVarient = async(id)=>{
     try {
+      setLoadingScreen(true);
       const res = await axios.delete(`http://localhost:8000/dashboard/deletevarient/${id}`,{
         headers:{
           Authorization : `Bearer ${getToken()}`
         }
       })
+      setLoadingScreen(false);
       console.log(res);
       setRremove(!remove);
 
     } catch (error) {
       console.log(error)
+      setLoadingScreen(false);
     }
   }
-  console.log(varients)
+  const toggelAddVarient = ()=>{
+    setAddVarient(false)
+  }
+  const postVarient = async(data)=>{
+      try {
+        setLoadingScreen(true);
+        const res = await axios.post("http://localhost:8000/dashboard/addvarient",data,{
+          headers:{
+            authorization : `Bearer ${getToken()}`
+          }
+        })
+        setLoadingScreen(false);
+      } catch (error) {
+        setLoadingScreen(false);
+        console.log(error)
+      }
+  }
   return (
     <div>
       <div className="container">
+        {addVarient ? <AddVarientFrom toggelAddVarient={toggelAddVarient} postVarient={postVarient}/> : null}
         <div className={styles.varients}>
           <div className={styles.heading}>
             <p>Available Varients</p>
-            <button>Add</button>
+            <button onClick={()=>setAddVarient(!addVarient)}>Add</button>
           </div>
         {
           varients.map((elem)=>(
-            <Varient elem={elem} deleteVarient={deleteVarient}/>
+            <Varient elem={elem} key={elem._id} deleteVarient={deleteVarient}/>
             ))
           }
           </div>
