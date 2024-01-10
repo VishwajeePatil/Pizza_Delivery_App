@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {  faTrash} from '@fortawesome/free-solid-svg-icons';
 
 import styles from "./Varient.module.css"
-const Varient = ({elem}) => {
+const Varient = ({elem,deleteVarient}) => {
+    const handelDelete = ()=>{
+        deleteVarient(elem._id)
+    }
   return (
     <div className={styles.main}>
         <div className={styles.title}>
@@ -24,7 +27,7 @@ const Varient = ({elem}) => {
             <p>Topping : <span>{elem.topping}</span></p>
             </div>
             <div>
-                <FontAwesomeIcon className={styles.trashIcon} icon={faTrash}/>
+                <FontAwesomeIcon className={styles.trashIcon} icon={faTrash} onClick={handelDelete}/>
             </div>
         </div>
     </div>

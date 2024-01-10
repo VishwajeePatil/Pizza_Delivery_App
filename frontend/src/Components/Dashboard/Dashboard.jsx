@@ -25,6 +25,19 @@ const Dashboard = () => {
   useEffect(()=>{
     getData();
   },[])
+  const deleteVarient = async(id)=>{
+    console.log(id)
+    try {
+      const res = await axios.delete(`http://localhost:8000/dashboard/deletevarient/${id}`,{
+        headers:{
+          Authorization : `Bearer ${getToken()}`
+        }
+      })
+      console.log(res);
+    } catch (error) {
+      console.log(error)
+    }
+  }
   console.log(varients)
   return (
     <div>
@@ -36,7 +49,7 @@ const Dashboard = () => {
           </div>
         {
           varients.map((elem)=>(
-            <Varient elem={elem}/>
+            <Varient elem={elem} deleteVarient={deleteVarient}/>
             ))
           }
           </div>
