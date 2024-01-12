@@ -7,3 +7,5 @@ auth/signup -> To Signup (requires name, mobile no, email, dob, password, getOff
 Admin EndPoints
 /dashboard/varient --> To get Varients
 /dashboard/addvarinent --> To Add New Varients
+
+dashboard/stock --> get put to get and update stoke details

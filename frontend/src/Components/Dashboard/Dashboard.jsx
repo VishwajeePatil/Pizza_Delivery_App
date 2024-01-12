@@ -6,8 +6,11 @@ import Varient from '../Varient/Varient';
 import styles from "./Dashboard.module.css"
 import AddVarientFrom from '../Forms/Varient/AddVarientFrom';
 import LoadingScreenContext from '../../Contetx API\'s/LoadingScreen';
+import Stock from '../Stock/Stock';
 const Dashboard = () => {
   const {setLoadingScreen} = useContext(LoadingScreenContext);
+  console.log("page")
+  const [stock,setStock] = useState()
   const [addVarient,setAddVarient] = useState(false);
   const {getToken} = useContext(tokenContext);
   const [refresh,setRefresh] = useState(false);
@@ -22,6 +25,12 @@ const Dashboard = () => {
         }
       });
       setVarients(res.data)
+      const stock = await axios.get("http://localhost:8000/dashboard/stock",{
+        headers:{
+          Authorization : `Bearer ${getToken()}`
+        }
+      });
+      setStock(stock.data)
       setLoadingScreen(false);
     } catch (error) {
       console.log(error)
@@ -32,6 +41,7 @@ const Dashboard = () => {
   useEffect(()=>{
     getData();
   },[refresh])
+  
   const deleteVarient = async(id)=>{
     try {
       setLoadingScreen(true);
@@ -41,7 +51,6 @@ const Dashboard = () => {
         }
       })
       setLoadingScreen(false);
-      console.log(res);
       setRefresh(!refresh);
 
     } catch (error) {
@@ -68,10 +77,16 @@ const Dashboard = () => {
         console.log(error)
       }
   }
+  const handelRefresh = (flag)=>{
+    setRefresh(!refresh);
+  }
   return (
-    <div>
+    <div className={styles.main}>
       <div className="container">
         {addVarient ? <AddVarientFrom toggelAddVarient={toggelAddVarient} postVarient={postVarient}/> : null}
+        <div className={styles.stock}>
+          {stock ? <Stock stock={stock} handelRefresh={handelRefresh} /> : null}
+        </div>
         <div className={styles.varients}>
           <div className={styles.heading}>
             <p>Available Varients</p>
@@ -82,7 +97,7 @@ const Dashboard = () => {
             <Varient elem={elem} key={elem._id} deleteVarient={deleteVarient}/>
             ))
           }
-          </div>
+        </div>
       </div>
     </div>
   )

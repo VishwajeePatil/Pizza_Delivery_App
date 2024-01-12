@@ -1,16 +1,21 @@
+.main{
+    padding: 20px 0;
+}
+.main > div > div{
+    background-color: var(--tertiary-color);
+    border: 1px solid var(--focus-color);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+}
 .varients{
     display: flex;
     flex-direction: column;
     gap: 20px;
     height: 70vh;
     width: 400px;
-    border: 1px solid red;
-    margin-top: 50px;
     padding: 0 20px 20px 20px;
     overflow-y: scroll;
     position: relative;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    border-radius: 5px;
 }
 ::-webkit-scrollbar {
     display: none;
@@ -21,11 +26,11 @@
     justify-content: space-between;
     position: sticky;
     top: 0;
-    background-color: var(--quaternary);
+    background-color: var(--tertiary-color);
     padding: 20px 0 10px 0;
 }
 .heading p{
-    color: var(--primary-color);
+    color: var(--focus-color);
     font-size: 1.2rem;
 }
 .heading button{
@@ -36,4 +41,7 @@
 }
 .heading button:hover{
     background-color:brown;
+}
+.stock{
+    border: 1px solid var(--focus-color);
 }

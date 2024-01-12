@@ -1,0 +1,44 @@
+.main{
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.main > div{
+    display: flex;
+    justify-content: space-between;
+}
+.heading button{
+    background-color: var(--focus-color);
+    padding: 5px 10px;
+}
+.heading p{
+    font-size: 1.2rem;
+    color: var(--focus-color);
+    font-weight: 500;
+}
+.heading > div{
+    display: flex;
+    gap: 20px;
+}
+.StockCard{
+    padding: 10px;
+    background-color: var(--main-color);
+    border: 1px solid var(--focus-color);
+    border-radius: 8px;
+}
+.StockCard p{
+    color: var(--primary-color);
+}
+.StockCard ul {
+    list-style: none;
+}
+.StockCard li{
+    margin-bottom: 5px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.StockCard input{
+    width: 50px;
+}
