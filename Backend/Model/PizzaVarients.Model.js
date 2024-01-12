@@ -26,7 +26,7 @@ const pizzaVarientSchema = new mongoose.Schema({
     },
     price:{
         type:Number,
-    }
+    },
 })
 const PizzaVarientModel = mongoose.model("pizza_varients",pizzaVarientSchema);
 module.exports = PizzaVarientModel;
