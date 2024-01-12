@@ -10,7 +10,7 @@ const Dashboard = () => {
   const {setLoadingScreen} = useContext(LoadingScreenContext);
   const [addVarient,setAddVarient] = useState(false);
   const {getToken} = useContext(tokenContext);
-  const [remove,setRremove] = useState(false);
+  const [refresh,setRefresh] = useState(false);
   const [varients,setVarients] = useState([]);
   const [msg,setmsg] = useState("");
   const getData = async()=>{
@@ -31,7 +31,7 @@ const Dashboard = () => {
   }
   useEffect(()=>{
     getData();
-  },[remove])
+  },[refresh])
   const deleteVarient = async(id)=>{
     try {
       setLoadingScreen(true);
@@ -42,7 +42,7 @@ const Dashboard = () => {
       })
       setLoadingScreen(false);
       console.log(res);
-      setRremove(!remove);
+      setRefresh(!refresh);
 
     } catch (error) {
       console.log(error)
@@ -61,6 +61,8 @@ const Dashboard = () => {
           }
         })
         setLoadingScreen(false);
+        setAddVarient(false);
+        setRefresh(!refresh)
       } catch (error) {
         setLoadingScreen(false);
         console.log(error)
